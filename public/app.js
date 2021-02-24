@@ -76,6 +76,7 @@ class App extends React.Component {
             this.youLose()
           }
     }
+
     youLose=()=>{
         this.setState({
           correct: 'YOU CLEARLY NEED MORE PRACTCE!'
@@ -139,19 +140,18 @@ return (
       <label htmlFor='point_value'>pointValue:</label>
       <input type='text' id='point_value' onChange={this.handleChange} />
       <br />
-      <input type='submit' value='createQuestion' />
+      <input id='submit' type='submit' value='createQuestion' />
       </form>
 </details>
 <br />
-<h2>currentPoints: {this.state.points}</h2><br />
+<div className='points'><h3>currentPoints: {this.state.points}</h3></div><br />
 
  <div className='quiz'>
   {this.state.quizq.map((quiz, index) => {
     return    <div className='update' key='index'>
-          <h3>question: {quiz.question}</h3>
-          <h4>answer: {quiz.answer}</h4>
-          <h5>pointValue: {quiz.point_value}</h5>
-          <br />
+          <h3>question: {quiz.question}</h3><br />
+          <h4>answer: {quiz.answer}</h4><br />
+          <div className='points'><h5>pointValue: {quiz.point_value}</h5></div>
           <br />
         <form onSubmit={this.isTrue}>
           <input type='text' id={quiz.id} onChange={this.handleChange} placeholder='a, b, c, d' />
@@ -160,6 +160,7 @@ return (
         <br />
         <details>
           <summary>editQuestion: </summary>
+          <h5>(please fill out all fields:)</h5>
           <form id={quiz.id} onSubmit={this.updateQuestion}>
           <label htmlFor='question'>updateQuestion:</label>
           <input type='text' id='question' onChange={this.handleChange} />
@@ -173,10 +174,10 @@ return (
           <label htmlFor='point_value'>pointValue:</label>
           <input type='text' id='point_value' onChange={this.handleChange} />
           <br />
-          <input type='submit' value='updateQuestion' />
+          <input id='submit' type='submit' value='updateQuestion' />
           <br />
           <br />
-          <button value={quiz.id} onClick={this.deleteQuestion}>
+          <button id='delete' value={quiz.id} onClick={this.deleteQuestion}>
           deleteQuestion</button>
           </form>
         </details>
